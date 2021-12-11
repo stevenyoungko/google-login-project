@@ -4,11 +4,12 @@ const mongoose = require('mongoose')
 const dotenv = require('dotenv')
 dotenv.config()
 const authRoute = require('./routes/auth-route')
+require('./config/passport')
 
 
 mongoose
   .connect(
-    "mongodb+srv://778899:778899password@cluster0.ihne3.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+    process.env.DB_CONNECT
   ).then(() => {
     console.log('Connect to mongodb atlas.')
   }).catch(err => {
