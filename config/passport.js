@@ -2,6 +2,20 @@ const passport = require('passport')
 const GoogleStrategy = require('passport-google-oauth20')
 const User = require('../models/user-model')
 
+passport.serializeUser((user, done) => {
+  console.log("Serializing user now")
+  done(null, user._id)
+})
+
+passport.deserializeUser((_id, done) => {
+  console.log('DeserializeUser user now')
+  User.findById({ _id }, (user) => {
+    console.log('Found~~~~')
+    done(null, user)
+  });
+});
+
+
 passport.use(new GoogleStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
