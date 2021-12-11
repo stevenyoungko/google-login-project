@@ -3,6 +3,7 @@ const app = express()
 const mongoose = require('mongoose')
 const dotenv = require('dotenv')
 dotenv.config()
+const authRoute = require('./routes/auth-route')
 
 
 mongoose
@@ -18,9 +19,10 @@ mongoose
 app.set('view engine', 'ejs')
 app.use(express.json()) // 解析 json
 app.use(express.urlencoded({ extended: true })) // 解析 urlencoded格式的請求
+app.use('/auth', authRoute)
 
 app.get('/', (req, res) => {
-  res.send('Hi!')
+  res.render('index')
 })
 
 app.listen(8080, () => {
