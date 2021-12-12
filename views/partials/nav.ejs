@@ -20,6 +20,11 @@
             <a class="nav-link" href="/auth/login">Login</a>
           </li>
         <% } %>
+        <% if (!user) { %>
+          <li class="nav-item">
+            <a class="nav-link" href="/auth/signup">Sign up</a>
+          </li>
+        <% } %>
         <% if (user) { %>
           <li class="nav-item">
             <a class="nav-link" href="/auth/logout">Logout</a>
