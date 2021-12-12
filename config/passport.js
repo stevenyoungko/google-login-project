@@ -7,13 +7,15 @@ passport.serializeUser((user, done) => {
   done(null, user._id)
 })
 
+
 passport.deserializeUser((_id, done) => {
-  console.log('DeserializeUser user now')
-  User.findById({ _id }, (user) => {
-    console.log('Found~~~~')
+  console.log("Deserializing user now");
+  User.findById({ _id }).then((user) => {
+    console.log("Found user.")
     done(null, user)
-  });
-});
+  })
+})
+
 
 
 passport.use(new GoogleStrategy({
