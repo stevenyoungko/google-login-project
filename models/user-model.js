@@ -4,7 +4,7 @@ const userSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
-    minlength: 2,
+    minlength: 3,
     maxlength: 255
   },
   googleID: {
@@ -23,7 +23,8 @@ const userSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    maxlength: 1024
+    maxlength: 1024,
+    minlength: 8
   }
 })
 

@@ -7,7 +7,6 @@ passport.serializeUser((user, done) => {
   done(null, user._id)
 })
 
-
 passport.deserializeUser((_id, done) => {
   console.log("Deserializing user now");
   User.findById({ _id }).then((user) => {
@@ -15,8 +14,6 @@ passport.deserializeUser((_id, done) => {
     done(null, user)
   })
 })
-
-
 
 passport.use(new GoogleStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID,
@@ -32,7 +29,8 @@ passport.use(new GoogleStrategy({
         new User({
           name: profile.displayName,
           googleID: profile.id,
-          thumbnail: profile.photos[0].value
+          thumbnail: profile.photos[0].value,
+          email: profile.emails[0].value
         })
           .save()
           .then((newUser) => {
